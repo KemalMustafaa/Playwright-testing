@@ -9,7 +9,7 @@ test("User can proceed to checkout", async ({ page }) => {
     const cartPage = new CartPage(page);
     const checkoutPage = new CheckoutPage(page);
 
-    await page.goto('inventory.html/');
+    await page.goto('inventory.html');
     // Act:
     await inventoryPage.addProductToCart();
     await inventoryPage.openCart();
@@ -17,6 +17,6 @@ test("User can proceed to checkout", async ({ page }) => {
     await checkoutPage.checkoutForm('coba', 'coba', '123123');
     
     // Assert:
-    await expect(checkoutPage.firstNameInput).toBeVisible();
-    await page.waitForTimeout(5000);
+    await expect(page).toHaveURL(/checkout-step-two/);
+    // await expect(checkoutPage.firstNameInput).toBeVisible();
 });
