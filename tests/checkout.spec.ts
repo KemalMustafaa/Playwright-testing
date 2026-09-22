@@ -14,9 +14,17 @@ test("User can proceed to checkout", async ({ page }) => {
     await inventoryPage.addProductToCart();
     await inventoryPage.openCart();
     await cartPage.checkout();
-    await checkoutPage.checkoutForm('coba', 'coba', '123123');
+
+    await checkoutPage.checkoutForm(
+        'coba',
+        'coba', 
+        '123123',
+    );
+    await checkoutPage.continueToOverview();
+    await checkoutPage.finishOrder();
     
     // Assert:
-    await expect(page).toHaveURL(/checkout-step-two/);
+    // await expect(page).toHaveURL(/checkout-step-two/);
     // await expect(checkoutPage.firstNameInput).toBeVisible();
+    await expect(checkoutPage.completeMessage).toBeVisible();
 });

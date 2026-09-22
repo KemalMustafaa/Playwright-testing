@@ -7,6 +7,9 @@ export class CheckoutPage {
     readonly lastNameInput;
     readonly postalCodeInput;
     readonly continueButton;
+    
+    readonly finishButton;
+    readonly completeMessage;
 
     constructor(page: Page) {
         this.page = page;
@@ -15,13 +18,26 @@ export class CheckoutPage {
         this.lastNameInput = page.locator('#last-name');
         this.postalCodeInput = page.locator('#postal-code');
         this.continueButton = page.getByRole('button', { name: /continue/i });
+
+        this.finishButton = page.getByRole('button', { name: /finish/i });
+        this.completeMessage = page.getByText('Thank you for your order!');
     }
 
-    async checkoutForm(first: string, last: string, postal: string) {
+    async checkoutForm(
+        first: string,
+        last: string,
+        postal: string,
+    ) {
         await this.firstNameInput.fill(first);
         await this.lastNameInput.fill(last);
         await this.postalCodeInput.fill(postal);
-        await this.continueButton.click();
+    }
 
+    async continueToOverview() {
+        await this.continueButton.click();
+    }
+
+    async finishOrder() {
+        await this.finishButton.click();
     }
 }

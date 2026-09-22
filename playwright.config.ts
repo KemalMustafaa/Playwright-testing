@@ -28,7 +28,7 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
-    baseURL: "https://www.saucedemo.com/",
+    baseURL: 'https://www.saucedemo.com/',
 
     // Menjalankan browser secara visual/tampil di layar
     headless: false,
