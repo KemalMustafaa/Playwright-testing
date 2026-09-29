@@ -16,16 +16,15 @@ test("User can proceed to checkout", async ({ page }) => {
     await cartPage.checkout();
 
     await checkoutPage.checkoutForm(
-        'coba',
+        '',
         'coba', 
         '123123',
     );
     await checkoutPage.continueToOverview();
-    await checkoutPage.finishOrder();
-    
+
     // Assert:
     // await expect(page).toHaveURL(/checkout-step-two/);
     // await expect(checkoutPage.firstNameInput).toBeVisible();
-    await expect(checkoutPage.completeMessage).toBeVisible();
-    await page.waitForTimeout(9000);
+    await expect(checkoutPage.errorMessage).toBeVisible();
+    await page.waitForTimeout(5000);
 });

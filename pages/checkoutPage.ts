@@ -10,6 +10,9 @@ export class CheckoutPage {
     
     readonly finishButton;
     readonly completeMessage;
+    readonly backHome;
+
+    readonly errorMessage;
 
     constructor(page: Page) {
         this.page = page;
@@ -21,6 +24,9 @@ export class CheckoutPage {
 
         this.finishButton = page.getByRole('button', { name: /finish/i });
         this.completeMessage = page.getByText('Thank you for your order!');
+        this.backHome = page.getByRole('button', { name: /back home/i });
+
+        this.errorMessage = page.getByText('Error: First Name is required')
     }
 
     async checkoutForm(
@@ -39,5 +45,9 @@ export class CheckoutPage {
 
     async finishOrder() {
         await this.finishButton.click();
+    }
+
+    async backFirstPage() {
+        await this.backHome.click();
     }
 }
